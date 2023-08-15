@@ -1,0 +1,13 @@
+<h3>Update article Details</h3>
+<%= form_with model: @article do |form| %>
+<div>
+  <%= form.text_field :title, placeholder: "title" %>
+</div><br>
+<div>
+  <%= form.text_field :content, placeholder: "content" %>
+</div><br>
+<div>
+  <%= form.submit %>
+    <%= link_to 'Go Back', articles_path, style: "color:red;" %>
+</div>
+<% end %>

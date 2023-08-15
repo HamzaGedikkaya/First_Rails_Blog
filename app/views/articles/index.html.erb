@@ -1,2 +1,20 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+<div class="table">
+  <table>
+    <thead>
+      <tr>
+        <td><%= link_to "+", new_article_path, style: "font-size: 30px; color: green;" %></td>
+        <td>Edit Article</td>
+        <td>Remove Article</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each do |article| %>
+      <tr>
+        <td><%= link_to article.title, article_path(article) %></td>
+        <td><%= button_to 'Edit', edit_article_path(article), method: 'get'%></td>
+        <td><%= button_to 'Remove', article_path(article), method: :delete %></td>
+      <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
