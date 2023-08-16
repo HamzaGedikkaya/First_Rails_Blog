@@ -1,26 +1,21 @@
-<!-- <h3>Create a article</h3>
-<%= form_with model: @article do |form| %>
-  <%= form.text_field :title, placeholder: "title" %>
-  <%= form.text_field :content, placeholder: "content" %>
-  <%= form.submit %>
-<% end %>
--->
-
-<h1>New Article</h1>
-
-<%= form_with model: @article do |form| %>
-  <div>
-    <%= form.label :title %><br>
+<div class="new_article">
+  <%= form_with model: @article do |form| %>
+  <div class="new_article_field">
+    <h1>Yeni Makale Oluştur</h1>
+  </div>
+  <div class="new_article_title">
+    <%= form.label :Başlık %><br>
     <%= form.text_field :title %>
-  </div>
+  </div><br>
 
-  <div>
-    <%= form.label :content %><br>
+  <div class="new_article_content">
+    <%= form.label :İçerik %><br>
     <%= form.text_area :content %>
-  </div>
+  </div><br>
 
-  <div>
-    <%= form.submit %>
-    <%= link_to 'Go Back', articles_path, style: "color:red;" %>
+  <div class="new_article_buttons">
+    <%= link_to 'Geri Dön', articles_path%>
+    <%= form.submit value: "Makale Oluştur"%>
   </div>
-<% end %>
+  <% end %>
+</div>

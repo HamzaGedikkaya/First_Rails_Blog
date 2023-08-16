@@ -1,0 +1,51 @@
+    /*! Article */
+.article_card {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 1%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 5px #00000033;
+    transition: all 0.3s ease;
+}
+.article_card:hover {
+    transform: scale(0.95);
+}
+
+
+    /*! Title */
+.article_title {
+    display: flex;
+    justify-content: center;
+}
+.article_title h2 a{
+    text-decoration: none;
+    font-size: 35px;
+    color: black;
+}
+
+
+    /*! Body */
+.article_body {
+    border-bottom: 1px solid black;
+}
+
+
+    /*! Footer */
+.article_footer ul {
+    list-style: none;
+    overflow: auto;
+    padding: 0;
+}
+.article_footer li {
+    padding: 0px 20px;
+    font-weight: bold;
+}
+.article_footer li button {
+    border-radius: 7px;
+    background-color: black;
+    color: white;
+}
+
+
+

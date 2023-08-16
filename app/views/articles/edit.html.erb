@@ -1,13 +1,25 @@
-<h3>Update article Details</h3>
-<%= form_with model: @article do |form| %>
-<div>
-  <%= form.text_field :title, placeholder: "title" %>
-</div><br>
-<div>
-  <%= form.text_field :content, placeholder: "content" %>
-</div><br>
-<div>
-  <%= form.submit %>
-    <%= link_to 'Go Back', articles_path, style: "color:red;" %>
-</div>
-<% end %>
+<div class="edit_article">
+  <%= form_with model: @article do |form| %>
+  <div class="edit_article_field">
+    <h1>Makaleyi Düzenle</h1>
+  </div>
+  <div class="edit_article_title">
+    <%= form.label :Başlık %><br>
+    <%= form.text_field :title, placeholder: "title" %>
+  </div><br>
+
+  <div class="edit_article_content">
+    <%= form.label :İçerik %><br>
+    <%= form.text_field :content, placeholder: "content" %>
+  </div><br>
+
+  <div class="edit_article_buttons">
+    <%= link_to 'Geri Dön', articles_path%>
+    <%= form.submit value:"Güncelle" %>
+    <%= button_to 'Makaleyi sil', article_path(@article), method: :delete, class:"article_remove" %>
+  </div>
+  <% end %>
+
+
+    
+ </div>

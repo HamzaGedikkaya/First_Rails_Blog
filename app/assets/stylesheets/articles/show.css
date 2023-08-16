@@ -1,0 +1,26 @@
+.show_article {
+    width: 80%;
+    margin: auto;
+    padding: 1%;
+    border-radius: 20px;
+    background-color:azure;
+    box-shadow: 5px 5px 5px 5px #00000033;
+    text-align: center;
+}
+
+.show_edit {
+    border-radius: 7px;
+    background-color: rgb(20, 111, 43);
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 2px;
+}
+.show_back {
+    text-decoration: none;
+    padding: 3px;
+    border-radius: 7px;
+    background-color: black;
+    color: white;
+    font-size: 13px;
+}

@@ -1,20 +1,23 @@
-<div class="table">
-  <table>
-    <thead>
-      <tr>
-        <td><%= link_to "+", new_article_path, style: "font-size: 30px; color: green;" %></td>
-        <td>Edit Article</td>
-        <td>Remove Article</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @articles.each do |article| %>
-      <tr>
-        <td><%= link_to article.title, article_path(article) %></td>
-        <td><%= button_to 'Edit', edit_article_path(article), method: 'get'%></td>
-        <td><%= button_to 'Remove', article_path(article), method: :delete %></td>
-      <% end %>
-      </tr>
-    </tbody>
-  </table>
+<div class="article_container">
+  <% @articles.each do |article| %>
+  <div class="article_card">
+
+    <div class="article_title">
+      <h2><%= link_to article.title, article_path(article) %></h2>
+    </div>
+
+    <div class="article_body">
+      <p><%= article.content %></p>
+    </div>
+
+    <div class="article_footer">
+      <ul>
+        <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
+        <li style="float: right;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
+      </ul>
+    </div>
+  
+  </div>
+  <% end %>
 </div>
+

@@ -1,5 +1,16 @@
-<h1><%= @article.title %></h1>
-<h4><%= @article.content %></h4>
-<%= link_to 'Go Back', articles_path, style: "color:red;" %>
-<%= link_to 'Edit', edit_article_path%>
+<div class="show_article">
 
+    <div class="show_title">
+      <h2><%= @article.title %></h2>
+    </div>
+
+    <div class="show_body">
+      <p><%= @article.content %></p>
+    </div>
+
+    <div class="show_footer">
+    <%= link_to 'Geri Dön', articles_path, class: "show_back"%>
+    <%= link_to 'Düzenle', edit_article_path, class: "show_edit"%>
+    </div>
+  
+  </div>
