@@ -49,3 +49,9 @@
 
 
 
+    /*! Image */
+.article_image {
+    border-radius: 20px;
+    width: 100%;
+}
+    

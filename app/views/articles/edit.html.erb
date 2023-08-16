@@ -16,10 +16,19 @@
   <div class="edit_article_buttons">
     <%= link_to 'Geri Dön', articles_path%>
     <%= form.submit value:"Güncelle" %>
-    <%= button_to 'Makaleyi sil', article_path(@article), method: :delete, class:"article_remove" %>
+  </div>
+ 
+  <div>
+    <% if @article.avatar.present? && @article.avatar.respond_to?(:url) %>
+      <div>
+        <%= image_tag(@article.avatar, class: "article_image") %>
+        <%= form.file_field :avatar %>
+      </div>
+    <% end %>
   </div>
   <% end %>
+  
+</div>
 
 
-    
- </div>
+ 

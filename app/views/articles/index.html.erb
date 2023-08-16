@@ -7,13 +7,15 @@
     </div>
 
     <div class="article_body">
-      <p><%= article.content %></p>
+      <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
+      <p><%= article.content.truncate(200) %></p>
     </div>
 
     <div class="article_footer">
       <ul>
         <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
-        <li style="float: right;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
+        <li style="float: right;"><%= button_to 'Makaleyi sil', article_path(article), method: :delete %></li>
+        <li style="float:right; padding:0;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
       </ul>
     </div>
   

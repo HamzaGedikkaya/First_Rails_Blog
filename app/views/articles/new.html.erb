@@ -16,6 +16,7 @@
   <div class="new_article_buttons">
     <%= link_to 'Geri Dön', articles_path%>
     <%= form.submit value: "Makale Oluştur"%>
+    <%= form.file_field :avatar %>
   </div>
   <% end %>
 </div>

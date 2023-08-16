@@ -35,6 +35,9 @@
     background-color: rgb(20, 111, 43);
     color: white;
 }
+.new_article_buttons #article_avatar {
+    background-color:grey;
+}
 .new_article_buttons a {
     text-decoration: none;
     padding: 3px;

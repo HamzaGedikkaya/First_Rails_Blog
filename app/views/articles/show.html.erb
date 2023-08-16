@@ -5,6 +5,7 @@
     </div>
 
     <div class="show_body">
+      <%= image_tag(@article.avatar, class: "article_image") if @article.avatar.present? %>
       <p><%= @article.content %></p>
     </div>
 
