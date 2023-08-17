@@ -1,6 +1,20 @@
 class ArticlesController < ApplicationController
+
+  #! INDEX AND SHOW ARTICLE
   def index
     @articles = Article.all
+      
+    @q = Article.ransack(params[:q])
+    
+    if
+      params[:q].present? && params[:q][:title_or_content_cont].length > 0 && params[:q][:title_or_content_cont].length < 5
+      flash.now[:alert] = "5 karakterden az yazamazsın!"
+    elsif
+      params[:q].present? && params[:q][:title_or_content_cont].blank?
+      flash.now[:alert] = "Hiç karakter girmediniz!"
+    else
+      @articles = @q.result(distinct: true).order(:title).to_a
+    end    
   end
 
   def show
@@ -9,7 +23,7 @@ class ArticlesController < ApplicationController
 
 
 
-  
+  #! CREATE NEW ARTICLE
   def new
     @article = Article.new
   end
@@ -27,7 +41,7 @@ class ArticlesController < ApplicationController
 
 
 
-
+  #! EDIT AND UPDATE ARTICLE
   def edit
     @article = Article.find(params[:id])
   end
@@ -42,7 +56,7 @@ class ArticlesController < ApplicationController
 
 
 
-
+  #! DELETE ARTICLE
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
@@ -56,4 +70,5 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :content, :avatar)
   end
 
+  
 end

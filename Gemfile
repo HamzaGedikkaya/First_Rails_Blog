@@ -72,3 +72,5 @@ group :test do
 end
 
   gem "image_processing"
+  gem 'ransack'
+
