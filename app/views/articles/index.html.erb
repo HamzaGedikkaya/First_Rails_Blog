@@ -9,9 +9,11 @@
       <%= form.button "Ara", type: 'submit' %>
     <% end %>
   </div>
-  <div class="search_box_alert">
-        <%= flash[:alert] %>
-  </div>
+    <% if flash[:alert] %>    
+    <div class="search_box_alert">
+          <%= flash[:alert] %>
+    </div>
+    <% end %>
 
   <%#* ARTICLES %>
   <% @articles.each do |article| %>

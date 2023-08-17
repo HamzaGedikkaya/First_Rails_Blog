@@ -1,0 +1,20 @@
+<div class="container_comment">
+  <div class="author_comment">
+    <%= comment.author_name %>
+  </div>
+
+  <div class="body_comment">
+    <%= comment.body %> <br><br>
+  </div>
+
+  <div class="submit_comment">
+    <% if comment.created_at.present? %>
+        <p class="comment-date">Yorum Tarihi: <%= comment.created_at.strftime('%H:%M %d-%m-%Y ') %></p>
+    <% end %> 
+    <%= button_to "Delete Comment", [comment.article, comment], method: :delete%>
+  </div>
+  <div></div>
+</div>
+<br>
+
+

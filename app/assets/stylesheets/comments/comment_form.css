@@ -1,0 +1,41 @@
+.comment_title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.comment_container {
+    width: 97%;
+    padding: 1%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 5px #00000033;
+    background-color: white;
+    text-align: start;
+
+}
+
+.comment_author input, textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+.comment_author input {
+    height: 20px;
+}
+
+.comment_body textarea {
+    resize: both;
+    height: 70px;
+}
+
+.comment_submit {
+    text-align: end;
+}
+.comment_submit input {
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color:darkblue;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}

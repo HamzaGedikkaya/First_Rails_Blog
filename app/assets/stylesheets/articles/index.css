@@ -70,7 +70,7 @@
     height: 35px;
     transition: all 0.3s ease;
 }
-.search_box input:hover, button:hover {
+.search_box input:hover, button:hover, a:hover{
     transform: scale(1.1);
 }
 .search_box button {
@@ -90,6 +90,7 @@
     padding: 10px 20px;
     float: left;
     border-radius: 100%;
+    transition: all 0.3s ease;
 }
 
 .search_box_alert {
