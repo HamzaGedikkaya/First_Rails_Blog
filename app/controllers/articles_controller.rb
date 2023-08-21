@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:edit, :update, :destroy, :show]
 
   #! INDEX AND SHOW ARTICLE
   def index
@@ -18,7 +19,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
     @comment = Comment.new
     @comment.article_id = @article.id
   end
@@ -45,12 +45,9 @@ class ArticlesController < ApplicationController
 
   #! EDIT AND UPDATE ARTICLE
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
-
     @article.update(article_params)
 
     redirect_to article_path(@article)
@@ -60,7 +57,6 @@ class ArticlesController < ApplicationController
 
   #! DELETE ARTICLE
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
 
     redirect_to articles_path
@@ -72,5 +68,9 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :content, :avatar)
   end
 
+  
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
 end
