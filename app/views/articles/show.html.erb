@@ -7,7 +7,7 @@
 
     <div class="show_body">
       <%= image_tag(@article.avatar, class: "article_image") if @article.avatar.present? %>
-      <p><%= @article.content %></p>
+      <p><%= @article.content.html_safe %></p>
     </div>
 
 
