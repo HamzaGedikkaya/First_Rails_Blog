@@ -29,7 +29,7 @@
 
     <div class="article_body">
       <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
-      <p><%= article.content.truncate(200) %></p>
+      <p><%= article.content.truncate(200).html_safe %></p>
 
     </div>
 
