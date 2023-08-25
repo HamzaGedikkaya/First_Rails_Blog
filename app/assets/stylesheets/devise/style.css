@@ -1,0 +1,77 @@
+* {
+  transition: all 0.3s ease-out;
+}
+.devise-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  background: url("/assets/gradient-background.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+}
+
+.devise {
+  animation: bounceInDown;
+  animation-duration: 1s;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 1);
+  text-align: center;
+}
+
+.devise h2 {
+  color: #b5b5b5;
+}
+
+.devise-input {
+  height: 40px;
+  width: 80%;
+  border: none;
+  border-radius: 30px;
+  opacity: 0.5;
+}
+
+.user-icon {
+  height: 10em;
+  opacity: 0.6;
+}
+.field-check a,
+label {
+  color: #b5b5b5;
+  text-decoration: none;
+  padding: 15px 15px 15px 0px;
+}
+.field-check a:hover,
+label:hover {
+  color: darkred;
+}
+
+.field-check {
+  padding-left: 15px;
+}
+
+.login-button {
+  width: 7rem;
+  border-radius: 30px;
+  background-color: #2a0066;
+  color: #b5b5b5;
+}
+.login-button:hover {
+  transform: scale(1.2);
+  color: green;
+}
+
+.cancel-button {
+  background-color: darkred;
+  width: 10rem;
+}
+.cancel-button:hover {
+  background-color: black;
+  color: darkred;
+}
+
+.register-button {
+  margin: 15px 15px 15px 50px;
+}
