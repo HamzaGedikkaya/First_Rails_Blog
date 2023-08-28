@@ -1,35 +1,37 @@
-<%#! REGISTER PAGE %>
-<div class="devise-container">
-  <div class="devise">
-    
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+  <%#! REGISTER PAGE %>
+<body class="devise-body">
+  <div class="devise-container">
+    <div class="devise">
       
-      <div class="field">
-        <%= image_tag('user-icon.png', alt: 'user icon', class: 'user-icon')%>
-        <h2>Register</h2> 
-      </div>  <br>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        
+        <div class="field">
+          <%= image_tag('user-icon.png', alt: 'user icon', class: 'user-icon')%>
+          <h2>Register</h2> 
+        </div>  <br>
 
-      <div class="field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"devise-input", placeholder:"E-Mail" %>
-      </div> <br>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"devise-input", placeholder:"E-Mail" %>
+        </div> <br>
 
-      <div class="field">
-        <% if @minimum_password_length %>
-        <%= f.password_field :password, autocomplete: "new-password", class:"devise-input", placeholder:"Password" %>
-        <% end %>
-      </div> <br>
+        <div class="field">
+          <% if @minimum_password_length %>
+          <%= f.password_field :password, autocomplete: "new-password", class:"devise-input", placeholder:"Password" %>
+          <% end %>
+        </div> <br>
 
-      <div class="field">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"devise-input", placeholder:"Password Confirmation" %>
-      </div> <br>
+        <div class="field">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"devise-input", placeholder:"Password Confirmation" %>
+        </div> <br>
 
-      <div class="field-check">
-        <%= link_to "Log in Page", new_session_path(resource_name), class:"ms-3" %>
-        <%= f.submit "Sign up", class:"login-button register-button" %>
-      </div>
-      
-    <% end %>
+        <div class="field-check">
+          <%= link_to "Log in Page", new_session_path(resource_name), class:"ms-3" %>
+          <%= f.submit "Sign up", class:"login-button register-button" %>
+        </div>
+        
+      <% end %>
 
+    </div>
   </div>
-</div>
+</body>

@@ -1,49 +1,46 @@
 <div class="article_container">
 
-
-  <%#* SEARCH BOX %>
-  <div class="search_box">
-  <% if user_signed_in? %>
-    <%= link_to "+", new_article_path, class: "new" %> 
-  <% end %>
-    <%= search_form_for @q  do |form| %>
-      <%= form.search_field :title_or_content_cont, placeholder: "Arama..." %>
-      <%= form.button "Ara", type: 'submit' %>
+      <%#* SEARCH BOX %>
+    <div class="search_box">
+    <% if user_signed_in? %>
+      <%= link_to "+", new_article_path, class: "new" %> 
     <% end %>
-  
-  </div>
+      <%= search_form_for @q  do |form| %>
+        <%= form.search_field :title_or_content_cont, placeholder: "Arama..." %>
+        <%= form.button "Ara", type: 'submit' %>
+      <% end %>
+    </div>
+
     <% if flash[:alert] %>    
     <div class="search_box_alert">
-          <%= flash[:alert] %>
+      <%= flash[:alert] %>
     </div>
     <% end %>
 
-  <%#* ARTICLES %>
-  <% @articles.each do |article| %>
-  <div class="article_card">
+      <%#* ARTICLES %>
+    <% @articles.each do |article| %>
+    <div class="article_card">
+      <div class="article_title">
+        <h2><%= link_to article.title, article_path(article) %></h2>
+      </div>
 
-    <div class="article_title">
-      <h2><%= link_to article.title, article_path(article) %></h2>
-      
+      <div class="article_body">
+        <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
+        <p><%= article.content.truncate(100) %></p>
+      </div>
+
+      <div class="article_footer">
+        <ul>
+          <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
+          <% if user_signed_in? %>
+            <li style="float: right;"><%= button_to 'Makaleyi sil', article_path(article), method: :delete %></li>
+            <li style="float:right; padding:0;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-
-    <div class="article_body">
-      <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
-      <p><%= article.content.truncate(200).html_safe %></p>
-
-    </div>
-
-    <div class="article_footer">
-      <ul>
-        <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
-        <% if user_signed_in? %>
-        <li style="float: right;"><%= button_to 'Makaleyi sil', article_path(article), method: :delete %></li>
-        <li style="float:right; padding:0;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
-        <% end %>
-      </ul>
-    </div>
-  
-  </div>
   <% end %>
 
 </div>
+
+

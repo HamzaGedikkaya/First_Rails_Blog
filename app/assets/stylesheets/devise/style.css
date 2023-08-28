@@ -1,15 +1,18 @@
 * {
   transition: all 0.3s ease-out;
 }
+
+.devise-body {
+  height: 100vh;
+  background: url("/assets/gradient-background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
 .devise-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  height: 100vh;
-  background: url("/assets/gradient-background.jpg") no-repeat center center
-    fixed;
-  background-size: cover;
+  margin-top: 5rem;
 }
 
 .devise {
