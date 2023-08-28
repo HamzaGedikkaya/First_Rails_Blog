@@ -74,3 +74,4 @@ gem 'ransack'
 gem "devise", "~> 4.9"
 gem "bootstrap"
 gem "sassc-rails"
+gem "rolify"
