@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy, :show]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :require_author_or_admin, only: [:new, :create, :edit, :update, :destroy]
 
 
   #! INDEX AND SHOW ARTICLE
@@ -66,6 +66,18 @@ class ArticlesController < ApplicationController
 
   private
 
+
+  #! ROL
+  private
+
+  def require_author_or_admin
+    unless current_user.has_role?('author') || current_user.has_role?('admin')
+      flash[:alert] = 'Bu işlem için yetkiniz yok.'
+      redirect_to root_path
+    end
+  end
+
+  
   def article_params
     params.require(:article).permit(:title, :content, :avatar)
   end
