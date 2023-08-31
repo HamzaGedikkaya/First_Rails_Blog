@@ -11,8 +11,7 @@
       <div class="article_footer">
         <ul>
           <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
-          <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
-          <% end %>
+          <%= link_to 'Makaleyi Aktifleştir', activate_article_path(article), method: :put, class: 'btn btn-success' %>
         </ul>
       </div>
     </div>

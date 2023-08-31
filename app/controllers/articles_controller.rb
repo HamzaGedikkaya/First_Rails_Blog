@@ -52,6 +52,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def activate
+    @article = Article.find(params[:id])
+    @article.update(active: true)
+    redirect_to inactive_articles_path, notice: 'Makale başarıyla aktifleştirildi.'
+  end
+  
   #! EDIT AND UPDATE ARTICLE
   def edit
   end

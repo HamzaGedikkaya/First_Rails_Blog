@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
     get :inactive, on: :collection
+    get :activate, on: :member
   end
   root "articles#index"
 end
