@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
 
   def inactive
     @articles = Article.where(active: false)
-    unless current_user&.has_any_role?(:admin, :editor)
+    unless current_user&.has_any_role?(:admin, :editor, :author)
       flash[:alert] = 'Bu işlem için yetkiniz yok.'
       redirect_to root_path
     end

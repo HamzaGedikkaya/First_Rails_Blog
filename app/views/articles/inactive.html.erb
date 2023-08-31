@@ -11,7 +11,13 @@
       <div class="article_footer">
         <ul>
           <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
+          <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
+            <li style="float: right;"><%= button_to 'Makaleyi sil', article_path(article), method: :delete %></li>
+            <li style="float:right; padding:0;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
+          <% end %>
+          <% if current_user&.has_any_role?(:admin, :editor) %>
           <%= link_to 'Makaleyi Aktifleştir', activate_article_path(article), method: :put, class: 'btn btn-success' %>
+        <% end %>
         </ul>
       </div>
     </div>

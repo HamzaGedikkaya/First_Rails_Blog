@@ -12,9 +12,9 @@
               <%= link_to "Admin Panel", users_path, class: "nav-link" %>
             </li>
           <% end %>
-          <% if current_user&.has_any_role?(:admin, :editor) %>
+          <% if current_user&.has_any_role?(:admin, :editor, :author) %>
             <li class="nav-item">          
-              <%= link_to "Editor Panel", inactive_articles_path, class: "nav-link" %>
+              <%= link_to "Inactive Articles", inactive_articles_path, class: "nav-link" %>
             </li>
           <% end %>
           <% if user_signed_in? %>
