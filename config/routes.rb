@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :articles do
     resources :comments
+    get :inactive, on: :collection
   end
   root "articles#index"
 end

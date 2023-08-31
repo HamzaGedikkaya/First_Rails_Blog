@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
 
+  attribute :active, default: false
+  
   #* AVATAR
   has_one_attached :avatar
     

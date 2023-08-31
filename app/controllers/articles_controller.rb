@@ -1,13 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy, :show]
   before_action :require_author_or_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :inactive, only: [:inactive]
 
 
   #! INDEX AND SHOW ARTICLE
   def index
-    @articles = Article.all
+    @articles = Article.where(active: true)
       
-    @q = Article.ransack(params[:q])
+    @q = @articles.ransack(params[:q])
     
     if
       params[:q].present? && params[:q][:title_or_content_cont].length > 0 && params[:q][:title_or_content_cont].length < 5
@@ -43,7 +44,13 @@ class ArticlesController < ApplicationController
     end
   end
 
-
+  def inactive
+    @articles = Article.where(active: false)
+    unless current_user&.has_any_role?(:admin, :editor)
+      flash[:alert] = 'Bu işlem için yetkiniz yok.'
+      redirect_to root_path
+    end
+  end
 
   #! EDIT AND UPDATE ARTICLE
   def edit

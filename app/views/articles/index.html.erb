@@ -26,7 +26,6 @@
 
       <div class="article_body">
         <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
-        <p><%= article.content.truncate(100) %></p>
       </div>
 
       <div class="article_footer">

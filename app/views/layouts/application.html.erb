@@ -12,10 +12,6 @@
 
   <body>
   <main> 
-  <% if user_signed_in? %>
-    Are you admin? <%= current_user.has_role? :admin %> <br>
-    <%= current_user.roles.pluck(:name) %>
-  <% end %>
     <%= render partial: "shared/navbar" %>
     
     <%= yield %>

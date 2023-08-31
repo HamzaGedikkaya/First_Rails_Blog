@@ -1,0 +1,19 @@
+<% @articles.each do |article| %>
+    <div class="article_card">
+      <div class="article_title">
+        <h2><%= link_to article.title, article_path(article) %></h2>
+      </div>
+
+      <div class="article_body">
+        <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
+      </div>
+
+      <div class="article_footer">
+        <ul>
+          <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
+          <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
