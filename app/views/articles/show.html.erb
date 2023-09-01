@@ -28,4 +28,8 @@
       <%= render partial: 'comments/comment', collection: @article.comments.reverse %>
     </div>
     
+    <div>
+    <p>Tags: <%= @article.tags.pluck(:name).join(', ') %></p>
+    </div>
+    
   </div>

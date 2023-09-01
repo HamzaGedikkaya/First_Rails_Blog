@@ -1,20 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :destroy, :show]
-  before_action :require_author_or_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_author_or_admin, only: [:new, :create, :destroy]
+  before_action :require_editor_or_admin, only: [:edit, :update]
   before_action :inactive, only: [:inactive]
 
 
   #! INDEX AND SHOW ARTICLE
   def index
     @articles = Article.where(active: true)
-      
+    
     @q = @articles.ransack(params[:q])
     
-    if
-      params[:q].present? && params[:q][:title_or_content_cont].length > 0 && params[:q][:title_or_content_cont].length < 5
+    if params[:q].present? && params[:q][:title_or_content_cont].length > 0 && params[:q][:title_or_content_cont].length < 5
       flash.now[:alert] = "5 karakterden az yazamazsın!"
-    elsif
-      params[:q].present? && params[:q][:title_or_content_cont].blank?
+    elsif params[:q].present? && params[:q][:title_or_content_cont].blank?
       flash.now[:alert] = "Hiç karakter girmediniz!"
     else
       @articles = @q.result(distinct: true).order(:title).to_a
@@ -83,6 +82,13 @@ class ArticlesController < ApplicationController
   #! ROL
   private
 
+  def require_editor_or_admin
+    unless current_user.has_role?('editor') || current_user.has_role?('admin') || current_user.has_role?('author')
+      flash[:alert] = 'Bu işlem için yetkiniz yok.'
+      redirect_to root_path
+    end
+  end
+
   def require_author_or_admin
     unless current_user.has_role?('author') || current_user.has_role?('admin')
       flash[:alert] = 'Bu işlem için yetkiniz yok.'
@@ -92,7 +98,7 @@ class ArticlesController < ApplicationController
 
   
   def article_params
-    params.require(:article).permit(:title, :content, :avatar)
+    params.require(:article).permit(:title, :content, :avatar, tag_ids: [])
   end
 
   

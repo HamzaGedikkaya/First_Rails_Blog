@@ -1,0 +1,19 @@
+<h3>Tags</h3>
+
+<% @tags.each do |tag| %>
+  <div class="tag">
+    <%= link_to tag.name, tag_path(tag) %>
+  </div>
+<% end %>
+
+<%= link_to "New tag", new_tag_path if current_user&.has_role?(:admin) %> <br> <br>
+
+<% if current_user&.has_role?(:admin) || current_user&.has_role?(:editor) %>
+  <h3> Articles </h3>
+  <% @articles.each do |article| %>
+      <%= article.title + " |"%> 
+      <%= article.tags.pluck(:name).join(', ') if article.tags.any? %>
+      <%= link_to 'Edit', edit_article_path(article) %>
+      <br>
+  <% end %>
+<% end %>
