@@ -1,0 +1,29 @@
+.new_article_background {
+    background: url('new_article.jpeg') center center / cover no-repeat fixed;
+}
+.edit_article_background {
+    background: url('new_article2.jpeg') center center / cover no-repeat fixed;
+}
+.new_article, .edit_article, .show_article, .container_comment, .comment_container{
+    width: 95%;
+    padding: 1%;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px #00000033;
+}
+.new_article_title input, .edit_article_title input, .comment_author input {
+    max-width: 30%; 
+    width: 800px; 
+    height: 30px;
+    resize: vertical;
+}
+.trix-content {
+    height: 15em;
+}
+.navbar li a, .navbar button {
+    color: white;
+    font-weight: bold;
+}
+.card-img, .card-text{
+    height: 20em;
+    object-fit: cover;
+}

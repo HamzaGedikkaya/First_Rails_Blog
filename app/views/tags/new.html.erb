@@ -1,17 +1,19 @@
-<%= form_with(model: @tag, local: true) do |form| %>
-<% if @tag.errors.any? %>
-  <div style="color: red">
-    <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
-    <ul>
-      <% @tag.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<div class="text-center">
+  <%= form_with(model: @tag, local: true) do |form| %>
+  <% if @tag.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+      <ul>
+        <% @tag.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= form.label :name %>
-<%= form.text_field :name %>
+  <%= form.label :New_tag_name, class:"fw-bold" %>
+  <%= form.text_field :name, class:"form-control w-50 mx-auto" %> <br>
 
-<%= form.submit %>
-<% end %>
+  <%= form.submit class:"btn btn-secondary" %>
+  <% end %>
+</div>

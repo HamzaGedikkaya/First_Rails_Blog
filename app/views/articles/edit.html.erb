@@ -1,48 +1,50 @@
-<div class="edit_article">
-<% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
-  <%= form_with model: @article do |form| %>
-  <div class="edit_article_field">
-    <h1>Makaleyi Düzenle</h1>
-  </div>
-  <div class="edit_article_title">
-    <%= form.label :Başlık %><br>
-    <%= form.text_field :title, placeholder: "title" %>
-  </div><br>
+<body class="edit_article_background">
+  <div class="edit_article m-auto mb-4 bg-light">
+  <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
+    <%= form_with model: @article do |form| %>
+    <div class="edit_article_field">
+      <h1>Edit Article</h1>
+    </div>
+    <div class="edit_article_title">
+      <%= form.label :Title, class:"text-danger fw-bold" %><br>
+      <%= form.text_field :title, class:"fw-bold" %>
+    </div><br>
 
-  <div class="edit_article_content">
-    <%= form.label :İçerik %><br>
-    <%= form.rich_text_area :content, placeholder: "content" %>
-  </div><br>
+    <div class="edit_article_content">
+      <%= form.label :Content, class:"fw-bold text-danger" %><br>
+      <%= form.rich_text_area :content, placeholder: "content" %>
+    </div><br>
 
-  <div class="edit_article_buttons">
-    <%= link_to 'Geri Dön', articles_path%>
-    <%= form.submit value:"Güncelle" %>
-  </div>
- 
-  <div>
-    <% if @article.avatar.present? && @article.avatar.respond_to?(:url) %>
+    <div class="d-flex align-items-center">
+      <% if @article.avatar.present? && @article.avatar.respond_to?(:url) %>
+        <div>
+          <%= image_tag(@article.avatar, class: "w-25") %>
+          <%= form.file_field :avatar %>
+        </div>
+      <% end %>
+        
+        <div class="mx-1">
+          <%= link_to 'Cancel', articles_path, class:"btn btn-danger" %>
+        </div>
+        <div>
+          <%= form.submit value:"Update", class:"btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="d-flex justify-content-center">
+    <% if current_user&.has_role?(:editor) || current_user&.has_role?(:admin)  %>
+      <%= form_with(model: @article, local: true) do |form| %>
+
       <div>
-        <%= image_tag(@article.avatar, class: "article_image") %>
-        <%= form.file_field :avatar %>
+        <%= form.label :tag_ids, "Tags", class:"text-danger fw-bold fs-2" %> <br>
+        <%= form.collection_select :tag_ids, Tag.all, :id, :name, {}, { multiple: true, class:"fs-3" } %> 
+      </div> <br>
+
+      <div>
+        <%= form.submit "Add Tag", class:"fs-3 btn btn-success" %>
       </div>
+      <% end %>
     <% end %>
   </div>
-  <% end %>
-<% end %>
-<% if current_user&.has_role?(:admin) || current_user&.has_role?(:editor) %>
-  <%= form_with(model: @article, local: true) do |form| %>
-
-  <div class="field">
-    <%= form.label :tag_ids, "Tags" %>
-    <%= form.collection_select :tag_ids, Tag.all, :id, :name, {}, { multiple: true } %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Add Tag" %>
-  </div>
-  <% end %>
-<% end %>
-</div>
-
-
- 
+</body>

@@ -16,7 +16,9 @@
 
 @import "bootstrap";
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease !important;
 }
+body {background: url('indexbg.jpeg') center center / cover no-repeat fixed;}

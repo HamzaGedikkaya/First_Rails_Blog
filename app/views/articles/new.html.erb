@@ -1,22 +1,25 @@
-<div class="new_article">
-  <%= form_with model: @article do |form| %>
-  <div class="new_article_field">
-    <h1>Yeni Makale Oluştur</h1>
-  </div>
-  <div class="new_article_title">
-    <%= form.label :Başlık %><br>
-    <%= form.text_field :title %>
-  </div><br>
+<body class="new_article_background">  
+  <div class="new_article mt-4 m-auto bg-light">
+    <%= form_with model: @article do |form| %>
+    <div class="new_article_field ms-3">
+      <h1>Create New Article</h1>
+    </div>
 
-  <div class="new_article_content">
-    <%= form.label :İçerik %><br>
-    <%= form.rich_text_area :content %>
-  </div><br>
+    <div class="new_article_title fw-bold">
+      <%= form.label :Title, class:"fs-4 text-danger" %><br>
+      <%= form.text_field :title, class:"fw-bold" %>
+    </div><br>
 
-  <div class="new_article_buttons">
-    <%= link_to 'Geri Dön', articles_path%>
-    <%= form.submit value: "Makale Oluştur"%>
-    <%= form.file_field :avatar %>
+    <div class="new_article_content">
+      <%= form.label :Content, class:"fw-bold fs-4 text-danger"%><br>
+      <%= form.rich_text_area :content %>
+    </div><br>
+
+    <div class="d-flex">
+      <%= form.file_field :avatar, class:"btn btn-secondary me-auto" %>
+      <%= link_to 'Cancel', articles_path, class:"btn btn-danger me-1" %>
+      <%= form.submit value: "Create Article", class:"btn btn-success" %>
+    </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
+</body>

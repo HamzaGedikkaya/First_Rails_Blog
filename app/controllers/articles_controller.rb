@@ -76,8 +76,6 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
-  private
-
 
   #! ROL
   private

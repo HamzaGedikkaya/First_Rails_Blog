@@ -52,8 +52,6 @@ class TagsController < ApplicationController
     params.require(:tag).permit(:name)
   end
 
-  private
-
   def require_admin
     unless current_user.has_role?('admin')
       flash[:alert] = 'Bu işlem için yetkiniz yok.'

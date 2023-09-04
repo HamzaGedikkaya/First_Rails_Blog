@@ -1,5 +1,5 @@
-<div class="container_comment">
-  <div class="author_comment">
+<div class="container_comment m-auto">
+  <div class="author_comment fw-bold fs-6 ms-2 text-primary">
     <%= comment.author_name %>
   </div>
 
@@ -7,14 +7,12 @@
     <%= comment.body %> <br><br>
   </div>
 
-  <div class="submit_comment">
+  <div class="submit_comment d-flex justify-content-between">
     <% if comment.created_at.present? %>
-        <p class="comment-date">Yorum Tarihi: <%= comment.created_at.strftime('%H:%M %d-%m-%Y ') %></p>
+        <p class="comment-date">Comment Date: <%= comment.created_at.strftime('%H:%M %d-%m-%Y ') %></p>
     <% end %> 
-    <%= button_to "Delete Comment", [comment.article, comment], method: :delete%>
+    <%= button_to "Delete Comment", [comment.article, comment], method: :delete, class:"btn btn-danger rounded-pill"%>
   </div>
-  <div></div>
-</div>
-<br>
+</div><br>
 
 

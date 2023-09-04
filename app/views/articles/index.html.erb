@@ -1,48 +1,31 @@
-<div class="article_container">
-
-      <%#* SEARCH BOX %>
-    <div class="search_box">
-      <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
-        <%= link_to "+", new_article_path, class: "new" %>
-      <% end %>
-      <%= search_form_for @q  do |form| %>
-        <%= form.search_field :title_or_content_cont, placeholder: "Arama..." %>
-        <%= form.button "Ara", type: 'submit' %>
-      <% end %>
-    </div>
-
-    <% if flash[:alert] %>    
-    <div class="search_box_alert">
-      <%= flash[:alert] %>
-    </div>
+<div class="container">
+  <%#* SEARCH BOX %>
+  <div class="search_box">
+    <%= search_form_for @q, class: "d-flex ms-2 my-3" do |form| %>
+      <%= form.search_field :title_or_content_cont, placeholder: "Search...", class: "form-control mx-1 w-25" %>
+      <%= form.button type: 'submit', class: "btn btn-outline-light" do %><i class="fas fa-search"></i><% end %>
     <% end %>
-
-      <%#* ARTICLES %>
-    <% @articles.each do |article| %>
-    <div class="article_card">
-      <div class="article_title">
-        <h2><%= link_to article.title, article_path(article) %></h2>
+    <% if flash[:alert] %>    
+      <div class="text-center text-danger fw-bold fs-4 my-3">
+      <%= flash[:alert] %>
       </div>
+    <% end %>
+  </div>
 
-      <div class="article_body">
-        <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
-      </div>
-
-      <div class="article_footer">
-        <ul>
-          <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
-          <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
-            <li style="float: right;"><%= button_to 'Makaleyi sil', article_path(article), method: :delete %></li>
-            <li style="float:right; padding:0;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
+  <%#* ARTICLES %>
+  <div class="container">
+    <div class="row">
+      <% @articles.each do |article| %>
+      <div class="col-md-4">
+        <%= link_to article_path(article) do %>
+        <div class="card mb-4 bg-dark">
+        <%= content_tag :h5, article.title, class: "card-img-overlay text-start text-white fw-bold btn fs-4" %>
+          <% if article.avatar.present? %> <%= image_tag article.avatar, class: "card-img rounded" %>
+          <% else %> <p class="card-text text-white pt-5"><%= article.content.truncate(150) %></p>
           <% end %>
-          <div class="article_title">
-            <p>Tags: <%= article.tags.pluck(:name).join(', ') %></p>
-          </div>
-        </ul>
+        </div>
+        <% end %>
       </div>
-    </div>
-  <% end %>
-
+      <% end %>
+  </div>
 </div>
-
-

@@ -1,6 +1,12 @@
-<% @users.each do |user| %>
+<div class="container text-white d-inlineflex">
+  <% @users.reverse.each do |user| %>
+    <div class="text-danger">
+    <%= user.roles.pluck(:name)%>
+    </div>
     <%= user.email %>
-    <%= user.roles.pluck(:name) %>
-    <%= link_to 'Edit roles', edit_user_path(user) %>
+    <div class="container">
+    <%= link_to 'Edit roles', edit_user_path(user), class:"btn btn-outline-success" %>
+    </div>
     <br>
-<% end %>
+  <% end %>
+</div>

@@ -1,8 +1,7 @@
   <%#! REGISTER PAGE %>
 <body class="devise-body">
   <div class="devise-container">
-    <div class="devise">
-      
+    <div class="devise">    
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         
@@ -28,10 +27,8 @@
         <div class="field-check">
           <%= link_to "Log in Page", new_session_path(resource_name), class:"ms-3" %>
           <%= f.submit "Sign up", class:"login-button register-button" %>
-        </div>
-        
+        </div>  
       <% end %>
-
     </div>
   </div>
 </body>

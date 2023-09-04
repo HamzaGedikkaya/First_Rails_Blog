@@ -1,35 +1,27 @@
-<h1>Tag Details</h1>
+<div class="container">
+  <h1 class="text-white mt-5 ">Tag Details</h1>
+  <div id="tag">
+    <h6 class="text-danger">Tag Name: <%=@tag.name%></h6>
+  </div>
 
-<div id="tag">
-  <h6><%= @tag.name %></h6>
-</div>
+  <%= link_to "Back to Tags", tags_path, class:"btn btn-secondary" %>
+  <%= link_to "Edit this tag", edit_tag_path(@tag), class:"btn btn-primary" if current_user&.has_role?(:admin) %> 
+  <%= button_to "Destroy this tag", @tag, method: :delete, class:"btn btn-danger mx-5 my-3 mb-5" if current_user&.has_role?(:admin) %>
 
-<%= link_to "Edit this tag", edit_tag_path(@tag) if current_user&.has_role?(:admin) %> 
-<%= link_to "Back to Tags", tags_path %>
-
-<%= button_to "Destroy this tag", @tag, method: :delete if current_user&.has_role?(:admin) %>
-</div>
-
-<ul>
-  <% @articles.each do |article| %>
-    <div class="article_card">
-      <div class="article_title">
-        <h2><%= link_to article.title, article_path(article) %></h2>
-      </div>
-
-      <div class="article_body">
-        <%= image_tag(article.avatar, class: "article_image") if article.avatar.present? %>
-      </div>
-
-      <div class="article_footer">
-        <ul>
-          <li style="float: left;">Oluşturma Tarihi: <%= article.created_at.strftime('%H:%M %d-%m-%Y ') %></li>
-          <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>
-            <li style="float: right;"><%= button_to 'Makaleyi sil', article_path(article), method: :delete %></li>
-            <li style="float:right; padding:0;"><%= button_to 'Yazıyı Düzenle', edit_article_path(article), method: 'get'%></li>
+  <%#* ARTICLES %>
+  <div class="container">
+    <div class="row">
+      <% @articles.each do |article| %>
+      <div class="col-md-4">
+        <%= link_to article_path(article) do %>
+        <div class="card mb-4 bg-dark">
+        <%= content_tag :h5, article.title, class: "card-img-overlay text-start text-white fw-bold btn fs-4" %>
+          <% if article.avatar.present? %> <%= image_tag article.avatar, class: "card-img rounded" %>
+          <% else %> <p class="card-text text-white pt-5"><%= article.content.truncate(150) %></p>
           <% end %>
-        </ul>
+        </div>
+        <% end %>
       </div>
-    </div>
-  <% end %>
-</ul>
+      <% end %>
+  </div>
+</div>

@@ -1,30 +1,18 @@
-  <br><br>
-  <div class="comment_title">
-    <h3>Yorum Ekleyin</h3>
-    <h3>Toplam Yorum Sayısı (<%= @article.comments.size %>)</h3>
-  </div>
-
-    <%= form_for [ @article, @comment ] do |f| %>
-  <div class="comment_container">
+<br><h4 class="ms-5">Add Comment</h4>
+<%= form_for [ @article, @comment ] do |f| %>
+  <div class="comment_container m-auto mb-4">
     <div class="comment_author">
-        <%= f.label :author_name, "İsminiz"%><br/>
-        <%= f.text_field :author_name %>
-    </div><br>
+      <%= f.label :author_name, "Your Name:", class:"text-danger fw-bold rounded"%>
+      <%= f.text_field :author_name, class:"fw-bold" %>
+    </div>
 
     <div class="comment_body">
-        <%= f.label :body, "Yorumunuz" %><br/>
-        <%= f.text_area :body %>
+        <%= f.label :body, "Your Comment:", class:"text-danger fw-bold" %>
+        <%= f.text_area :body, class:"w-100" %>
     </div>
 
-    <div class="comment_submit">
-        <%= f.submit 'Gönder' %>
+    <div class="text-end me-2">
+        <%= f.submit 'Submit', class:"btn btn-primary text-end" %>
     </div>
-
   </div>  
-
-    <br>
-    <div style="text-align:start; margin-left:13px;">
-      <h3>Yorumlar</h3>
-    </div>
-
 <% end %>

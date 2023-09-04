@@ -1,35 +1,27 @@
-<div class="show_article">
-
-    <div class="show_title">
-      <h2><%= @article.title %></h2>
-    </div>
-
-
-    <div class="show_body">
-      <%= image_tag(@article.avatar, class: "article_image") if @article.avatar.present? %>
-      <p><%= @article.content.html_safe %></p>
-    </div>
-
-
-    <div class="show_footer">
-    <%= link_to 'Geri Dön', articles_path, class: "show_back"%>
-    <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>    
-      <%= link_to 'Düzenle', edit_article_path, class: "show_edit"%>
-    <% end %>
-    </div>
-
-
-    <div class="show_new_comment">
-      <%= render partial: 'comments/form' %>
-    </div>
-
-
-    <div class="show_all_comment">
-      <%= render partial: 'comments/comment', collection: @article.comments.reverse %>
-    </div>
-    
-    <div>
-    <p>Tags: <%= @article.tags.pluck(:name).join(', ') %></p>
-    </div>
-    
+<div class="show_article m-auto bg-light mb-4 w-75", style="opacity: 0.9">
+  <div class="show_title ">
+    <h6 class="text-primary text-end">Tag: <%= @article.tags.pluck(:name).join(', ') %></h6>
+    <h2 class="text-center">| <%= @article.title %> |</h2>
   </div>
+
+  <div class="show_body">
+    <p><%= @article.content.html_safe %></p>
+    <%= image_tag(@article.avatar, class: "w-50 mx-auto d-block rounded") if @article.avatar.present? %>
+  </div>
+
+  <div class="show_footer my-5 d-flex justify-content-end">
+    <%= link_to 'Back Home', articles_path, class: "btn btn-secondary me-1"%>
+    <% if current_user&.has_role?(:admin) || current_user&.has_role?(:author) %>    
+      <%= link_to 'Edit Article', edit_article_path, class: "btn btn-success"%>
+      <%= button_to 'Delete Article', article_path(@article), method: :delete, class: "btn btn-danger ms-1"%>
+    <% end %>
+  </div>
+
+  <div class="comment_title d-flex justify-content-between">
+  <h3 class="ms-5">Comments</h3>
+  <h3 class="me-5">Total Number of Comments (<%= @article.comments.size %>)</h3>
+  </div>
+
+  <%= render partial: 'comments/comment', collection: @article.comments.reverse %>
+  <%= render partial: 'comments/form' %>
+</div>

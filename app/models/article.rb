@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   has_and_belongs_to_many :tags
   belongs_to :tag, optional: true
-
+  validates :title,:content, presence: true  
   attribute :active, default: false
   
   #* AVATAR
